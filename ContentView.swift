@@ -15,7 +15,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    // Inject the ViewModel using @StateObject
+
     @StateObject private var viewModel = TeacherWorkloadViewModel()
 
     var body: some View {
@@ -30,10 +30,10 @@ struct ContentView: View {
                 Spacer()
             }
             .padding()
-            .background(Color.chalkgreen) // Assuming Color.chalkgreen is defined or a custom asset
+            .background(Color.chalkgreen) 
 
             HStack(spacing: 12) {
-                // Bind filter selections directly to the ViewModel's properties
+              
                 filterMenu(title: "Class", selection: $viewModel.selectedClass, options: viewModel.filterOptions)
                 filterMenu(title: "Section", selection: $viewModel.selectedSection, options: viewModel.filterOptions)
                 filterMenu(title: "Subject", selection: $viewModel.selectedSubject, options: viewModel.filterOptions)
@@ -42,8 +42,8 @@ struct ContentView: View {
 
             HStack {
                 Image(systemName: "magnifyingglass")
-                    .foregroundColor(.grey02) // Assuming Color.grey02 is defined or a custom asset
-                TextField("Search", text: $viewModel.searchText) // Bind search text to ViewModel
+                    .foregroundColor(.grey02) 
+                TextField("Search", text: $viewModel.searchText)
                     .disableAutocorrection(true)
             }
             .padding(12)
@@ -54,7 +54,7 @@ struct ContentView: View {
 
             ScrollView {
                 VStack(spacing: 12) {
-                    // Iterate over the filtered teachers from the ViewModel
+                 
                     ForEach(viewModel.filteredTeachers) { teacher in
                         TeacherCardView(teacher: teacher)
                     }
@@ -66,13 +66,13 @@ struct ContentView: View {
         .background(Color.white.ignoresSafeArea())
     }
 
-    // filterMenu remains a ViewBuilder function, now taking options from ViewModel
+    
     @ViewBuilder
     func filterMenu(title: String, selection: Binding<String>, options: [String]) -> some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(title)
                 .font(.system(size: 14, weight: .medium))
-                .foregroundColor(Color.grey02) // Assuming Color.grey02 is defined or a custom asset
+                .foregroundColor(Color.grey02) 
             Menu {
                 ForEach(options, id: \.self) { option in
                     Button(option) {
@@ -82,7 +82,7 @@ struct ContentView: View {
             } label: {
                 HStack {
                     Text(selection.wrappedValue)
-                        .foregroundColor(.chalkgreen) // Assuming Color.chalkgreen is defined or a custom asset
+                        .foregroundColor(.chalkgreen)
                     Spacer()
                     Image(systemName: "chevron.down")
                         .font(.system(size: 12))

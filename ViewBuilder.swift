@@ -29,17 +29,15 @@ struct TeacherCardView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(teacher.name)
                     .font(.system(size: 16, weight: .semibold))
-                    .foregroundColor(.chalkgreen) // Assuming Color.chalkgreen is defined or a custom asset
-
+                    .foregroundColor(.chalkgreen) 
                 Text("ID: \(teacher.teacherID)")
                     .font(.system(size: 13))
-                    .foregroundColor(.chalkgreen03) // Assuming Color.chalkgreen03 is defined or a custom asset
+                    .foregroundColor(.chalkgreen03) 
 
                 HStack {
                     Text("Class : ")
                         .font(.system(size: 13))
-                        .foregroundColor(.graphViolet) // Assuming Color.graphViolet is defined or a custom asset
-
+                        .foregroundColor(.graphViolet) 
                     Text(teacher.classInfo)
                         .font(.system(size: 13))
                         .foregroundColor(.chalkgreen)
@@ -63,7 +61,7 @@ struct TeacherCardView: View {
         .shadow(color: Color.black.opacity(0.05), radius: 2, x: 0, y: 1)
         .overlay(
             RoundedRectangle(cornerRadius: 14)
-                .stroke(Color.stokeGrey) // Assuming Color.stokeGrey is defined or a custom asset
+                .stroke(Color.stokeGrey) 
         )
         .padding(.horizontal)
     }

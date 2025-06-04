@@ -2,8 +2,7 @@
 //  TeacherList.swift
 //  Task1.SwiftUI
 //
-//  Created by Greatify on 08/05/25.
-//
+
 
 import SwiftUI
 import Combine

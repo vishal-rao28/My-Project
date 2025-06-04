@@ -24,7 +24,6 @@ class TeacherWorkloadViewModel: ObservableObject {
     @Published var selectedSubject: String = "All"
     @Published var searchText: String = ""
 
-    // The data source for teachers
     @Published var allTeachers: [Teacher] = [
         Teacher(name: "Harriet Fisher", photo: "teacher1", teacherID: "SCHTE005", classInfo: "7th A, 8th B & C", status: "Present"),
         Teacher(name: "Caroline", photo: "teacher2", teacherID: "SCHTE005", classInfo: "6th A", status: "Absent"),
@@ -35,39 +34,33 @@ class TeacherWorkloadViewModel: ObservableObject {
         Teacher(name: "Harriet Fisher", photo: "teacher1", teacherID: "SCHTE005", classInfo: "7th A, 8th B & C", status: "Present")
     ]
 
-    // Filter options moved from global scope
-    let filterOptions = ["All", "A", "B", "C"] // Assuming these are common for Class, Section, Subject
-
-    // Computed property to apply filters and search
+   
+    let filterOptions = ["All", "A", "B", "C"] 
     var filteredTeachers: [Teacher] {
         var filtered = allTeachers
 
-        // Apply Class filter
+      
         if selectedClass != "All" {
             filtered = filtered.filter { $0.classInfo.contains(selectedClass) }
         }
 
-        // Apply Section filter (assuming sections are part of classInfo, e.g., "7th A")
+      
         if selectedSection != "All" {
             filtered = filtered.filter { $0.classInfo.contains(selectedSection) }
         }
 
-        // Apply Subject filter (this part needs actual subject data in Teacher if it's to filter subjects)
-        // For now, assuming subject filter might apply to classInfo or status for demonstration
-        // If real subject data existed, it would be: $0.subjects.contains(selectedSubject)
+        
         if selectedSubject != "All" {
-             // Placeholder: For a real app, you'd need a 'subjects' property in Teacher struct
-             // For this example, we'll filter by status based on subject.
-             // This needs to be refined if actual subject data is introduced.
-            if selectedSubject == "Present" || selectedSubject == "Absent" { // Example: If subject is status
+          
+            if selectedSubject == "Present" || selectedSubject == "Absent" { 
                 filtered = filtered.filter { $0.status == selectedSubject }
-            } else { // Fallback for other arbitrary "subject" filters
+            } else {
                 filtered = filtered.filter { $0.classInfo.contains(selectedSubject) }
             }
         }
 
 
-        // Apply Search text filter
+       
         if !searchText.isEmpty {
             filtered = filtered.filter { teacher in
                 teacher.name.localizedCaseInsensitiveContains(searchText) ||
